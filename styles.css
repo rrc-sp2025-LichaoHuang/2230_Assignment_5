@@ -1,0 +1,103 @@
+
+/* ---------- Global Styles ---------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Title Section ---------- */
+#title {
+  text-align: center;
+  background-color: #eaeaea;
+  color: #222;
+  padding: 2rem 1rem;
+}
+
+#title h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+#title p {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Select Box Section ---------- */
+#selectBox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+}
+
+fieldset {
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+legend {
+  color: #555;
+  font-weight: bold;
+}
+
+/* ---------- Form Inputs ---------- */
+select,
+input[type="number"] {
+  width: 80%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #fafafa;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Button ---------- */
+button {
+  background-color: #444;
+  color: white;
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 45px;
+  align-self: center;
+}
+
+button:hover {
+  background-color: #222;
+}
+
+/* ---------- Showcase Section ---------- */
+#showcase {
+  margin: 2rem auto;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  min-height: 200px;
+}
+
+/* ---------- Error Text ---------- */
+.inputError {
+  display: block;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
