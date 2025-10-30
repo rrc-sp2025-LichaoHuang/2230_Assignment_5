@@ -7,7 +7,31 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    
+    <div id="title">
+        <h1>Walkways Viewer</h1>
+        <p>Browse the longest, shortest, or randomly selected Winnipeg walkways.</p>
+    </div>
+    <div id="selectBox">
+        <fieldset id="searchMethod">
+            <legend>Search Method</legend>
+            <select name="searchMethod" id="searchMethod">
+                <option value=""></option>
+                <option value="long">Longest</option>
+                <option value="short">Shortest</option>
+                <option value="random">Random</option>
+                <span id="methodError" class="inputError"></span>
+            </select>
+        </fieldset>
+        <fieldset id="amount">
+            <legend>Amount</legend>
+            <input type="number" max="10" min="1">
+            <span id="numberError" class="inputError"></span>
+        </fieldset>
+        <button id="search">Search</button>
+    </div>
+    <div id="showcase">
+
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
