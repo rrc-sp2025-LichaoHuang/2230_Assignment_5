@@ -35,7 +35,7 @@ searchBtn.addEventListener("click", async () => {
         } else if (method === "short") {
         apiData = `?$order=length ASC&$limit=${amount}`;
         } else if (method === "random") {
-        apiData = `?$limit=100`;
+        apiData = `?$limit=1000`;
         }
 
         const encodedURL = encodeURI(API_URL + apiData);
@@ -69,3 +69,66 @@ const shuffled = array.sort(() => 0.5 - Math.random());
 return shuffled.slice(0, count);
 }
 
+// data:sample
+// {"id":"109698",
+// "length":"2.811",
+// "width":"1.5",
+// "location":{"type":"MultiLineString",
+// "coordinates":[[[-97.12062985151367,49.94124332731539],[-97.12059482322492,49.94123201057441]]]}}
+
+function renderWalkways(walkways, method) {
+    
+    showcase.innerHTML = "";
+
+    
+    const title = document.createElement("h2");
+
+    
+    if (method === "long") {
+        title.textContent = "Longest Walkways";
+    } else if (method === "short") {
+        title.textContent = "Shortest Walkways";
+    } else {
+        title.textContent = "Random Walkways";
+    }
+
+    
+    showcase.appendChild(title);
+
+    
+    const list = document.createElement("ul");
+
+    
+walkways.forEach((w) => {
+    let id;
+    if (w.id) {
+        id = w.id;
+    } else {
+        id = "N/A";
+    }
+
+    let length;
+    if (w.length) {
+        const numericLength = parseFloat(w.length);
+        length = numericLength.toFixed(2) + " m";
+    } else {
+        length = "N/A";
+    }
+
+    let width;
+    if (w.width) {
+        width = w.width + " m";
+    } else {
+        width = "N/A";
+    }
+
+    const item = document.createElement("li");
+    item.textContent =
+        "ID: " + id + " | Length: " + length + " | Width: " + width;
+
+    list.appendChild(item);
+});
+
+    
+    showcase.appendChild(list);
+}
