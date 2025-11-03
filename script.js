@@ -37,7 +37,7 @@ searchBtn.addEventListener("click", async () => {
         } else if (method === "short") {
             apiData = `?$order=length ASC&$limit=${amount}`;
         } else if (method === "random") {
-            apiData = `?$limit=20000`;
+            apiData = `?$limit=21000`;
         }
 
         const encodedURL = encodeURI(API_URL + apiData);
