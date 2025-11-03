@@ -29,16 +29,16 @@ searchBtn.addEventListener("click", async () => {
     showcase.textContent = "Loading";
 
     try {
-        let soql = "";
+        let apiData = "";
         if (method === "long") {
-        soql = `?$order=length DESC&$limit=${amount}`;
+        apiData = `?$order=length DESC&$limit=${amount}`;
         } else if (method === "short") {
-        soql = `?$order=length ASC&$limit=${amount}`;
+        apiData = `?$order=length ASC&$limit=${amount}`;
         } else if (method === "random") {
-        soql = `?$limit=100`;
+        apiData = `?$limit=100`;
         }
 
-        const encodedURL = encodeURI(API_URL + soql);
+        const encodedURL = encodeURI(API_URL + apiData);
         const res = await fetch(encodedURL);
 
         if (!res.ok) throw new Error(`Error ${res.status}`);
@@ -61,3 +61,11 @@ searchBtn.addEventListener("click", async () => {
         showcase.textContent = "Error loading data.";
     }
     });
+
+
+// get random 
+function getRandomItems(array, count) {
+const shuffled = array.sort(() => 0.5 - Math.random());
+return shuffled.slice(0, count);
+}
+
