@@ -8,7 +8,7 @@ body {
   padding: 0;
 }
 
-/* ---------- Title Section ---------- */
+/* ---------- Title  ---------- */
 #title {
   text-align: center;
   background-color: #eaeaea;
@@ -26,7 +26,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* ---------- Select Box Section ---------- */
+/* ---------- Select Box ---------- */
 #selectBox {
   display: flex;
   justify-content: center;
@@ -83,7 +83,7 @@ button:hover {
   background-color: #222;
 }
 
-/* ---------- Showcase Section ---------- */
+/* ---------- Showcase ---------- */
 #showcase {
   margin: 2rem auto;
   width: 80%;

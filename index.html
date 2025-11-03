@@ -11,27 +11,32 @@
         <h1>Walkways Viewer</h1>
         <p>Browse the longest, shortest, or randomly selected Winnipeg walkways.</p>
     </div>
+
     <div id="selectBox">
         <fieldset id="searchMethod">
             <legend>Search Method</legend>
-            <select name="searchMethod" id="searchMethod">
+            <label for="Method">Select a method:</label>
+            <select name="searchMethod" id="Method">
                 <option value=""></option>
                 <option value="long">Longest</option>
                 <option value="short">Shortest</option>
                 <option value="random">Random</option>
-                <span id="methodError" class="inputError"></span>
             </select>
+            <span id="methodError" class="inputError"></span>
         </fieldset>
+
         <fieldset id="amount">
             <legend>Amount</legend>
-            <input type="number" max="10" min="1">
+            <label for="amountInput">Enter amount (1–10):</label>
+            <input type="number" id="amountInput" max="10" min="1">
             <span id="numberError" class="inputError"></span>
         </fieldset>
+
         <button id="search">Search</button>
     </div>
-    <div id="showcase">
 
-    </div>
+    <div id="showcase"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
