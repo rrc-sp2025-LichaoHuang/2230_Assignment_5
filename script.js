@@ -8,11 +8,10 @@ const methodError = document.getElementById("methodError");
 const numberError = document.getElementById("numberError");
 
 searchBtn.addEventListener("click", async () => {
-    //Clear old errors and results
     methodError.textContent = "";
     numberError.textContent = "";
     showcase.innerHTML = "";
-    //Read user input
+
     const method = methodSelect.value;
     const amount = parseInt(amountInput.value);
     let valid = true;
@@ -21,21 +20,24 @@ searchBtn.addEventListener("click", async () => {
         methodError.textContent = "Please select a search method.";
         valid = false;
     }
-    if (!amountInput.value) {
-    numberError.textContent = "Please enter an amount.";
-    return;
+
+    if (isNaN(amount) || amount < 1 || amount > 10) {
+        numberError.textContent = "Please enter a number between 1 and 10.";
+        valid = false;
     }
 
-    showcase.textContent = "Loading";
+    if (!valid) return;
+
+    showcase.textContent = "Loading...";
 
     try {
         let apiData = "";
         if (method === "long") {
-        apiData = `?$order=length DESC&$limit=${amount}`;
+            apiData = `?$order=length DESC&$limit=${amount}`;
         } else if (method === "short") {
-        apiData = `?$order=length ASC&$limit=${amount}`;
+            apiData = `?$order=length ASC&$limit=${amount}`;
         } else if (method === "random") {
-        apiData = `?$limit=1000`;
+            apiData = `?$limit=20000`;
         }
 
         const encodedURL = encodeURI(API_URL + apiData);
@@ -46,13 +48,13 @@ searchBtn.addEventListener("click", async () => {
         const data = await res.json();
 
         if (data.length === 0) {
-        showcase.textContent = "No walkways found.";
-        return;
+            showcase.textContent = "No walkways found.";
+            return;
         }
 
         let result = data;
         if (method === "random") {
-        result = getRandomItems(data, amount);
+            result = getRandomItems(data, amount);
         }
 
         renderWalkways(result, method);
@@ -60,30 +62,18 @@ searchBtn.addEventListener("click", async () => {
         console.error(error);
         showcase.textContent = "Error loading data.";
     }
-    });
+});
 
-
-// get random 
 function getRandomItems(array, count) {
-const shuffled = array.sort(() => 0.5 - Math.random());
-return shuffled.slice(0, count);
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
 }
 
-// data:sample
-// {"id":"109698",
-// "length":"2.811",
-// "width":"1.5",
-// "location":{"type":"MultiLineString",
-// "coordinates":[[[-97.12062985151367,49.94124332731539],[-97.12059482322492,49.94123201057441]]]}}
-
 function renderWalkways(walkways, method) {
-    
     showcase.innerHTML = "";
 
-    
     const title = document.createElement("h2");
 
-    
     if (method === "long") {
         title.textContent = "Longest Walkways";
     } else if (method === "short") {
@@ -92,43 +82,20 @@ function renderWalkways(walkways, method) {
         title.textContent = "Random Walkways";
     }
 
-    
     showcase.appendChild(title);
 
-    
     const list = document.createElement("ul");
 
-    
-walkways.forEach((w) => {
-    let id;
-    if (w.id) {
-        id = w.id;
-    } else {
-        id = "N/A";
-    }
+    walkways.forEach((w) => {
+        const id = w.id ? w.id : "N/A";
+        const length = w.length ? w.length : "N/A";
+        const width = w.width ? w.width : "N/A";
 
-    let length;
-    if (w.length) {
-        const numericLength = parseFloat(w.length);
-        length = numericLength.toFixed(2) + " m";
-    } else {
-        length = "N/A";
-    }
+        const item = document.createElement("li");
+        item.textContent =
+            "ID: " + id + " | Length: " + length + " | Width: " + width;
+        list.appendChild(item);
+    });
 
-    let width;
-    if (w.width) {
-        width = w.width + " m";
-    } else {
-        width = "N/A";
-    }
-
-    const item = document.createElement("li");
-    item.textContent =
-        "ID: " + id + " | Length: " + length + " | Width: " + width;
-
-    list.appendChild(item);
-});
-
-    
     showcase.appendChild(list);
 }
